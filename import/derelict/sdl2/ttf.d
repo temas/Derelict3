@@ -37,7 +37,7 @@ private
     static if(Derelict_OS_Windows)
         enum libNames = "SDL2_ttf.dll";
     else static if(Derelict_OS_Mac)
-        enum libNames = "../Frameworks/SDL2_ttf.framework/SDL2_ttf, /Library/Frameworks/SDL2_ttf.framework/SDL2_ttf, /System/Library/Frameworks/SDL2_ttf.framework/SDL2_ttf";
+        enum libNames = "/usr/local/lib/libSDL2_ttf.dylib, ../Frameworks/SDL2_ttf.framework/SDL2_ttf, /Library/Frameworks/SDL2_ttf.framework/SDL2_ttf, /System/Library/Frameworks/SDL2_ttf.framework/SDL2_ttf";
     else static if(Derelict_OS_Posix)
         enum libNames = "libSDL2_ttf.so";
     else
