@@ -1,6 +1,6 @@
 module derelict;
 
-import std.path : dirName;
+import std.path : dirName, getcwd;
 import std.stdio : writefln, writeln;
 import std.process : shell, ErrnoException;
 import std.file : dirEntries, SpanMode;
@@ -36,7 +36,7 @@ version(DigitalMars)
         static assert(false, "Shared library support is not yet available with DMD.");
 
     pragma(msg, "Using the Digital Mars DMD compiler.");
-    enum compilerOptions = "-lib -O -release -inline -property -w -wi";
+    enum compilerOptions = "-m32 -g -debug -lib -O -release -inline -property -w -wi";
     string buildCompileString(string files, string libName)
     {
         return format("dmd %s -I%s -of%s%s %s", compilerOptions, importPath, outdir, libName, files);
@@ -143,7 +143,8 @@ int main(string[] args)
 {
     // Determine the path to this executable so that imports and source files can be found
     // no matter what the working directory.
-    buildPath = args[0].dirName() ~ "/";
+   // buildPath = args[0].dirName() ~ "/";
+   buildPath = getcwd() ~ "/";
 
     if(buildPath != "./")
     {
